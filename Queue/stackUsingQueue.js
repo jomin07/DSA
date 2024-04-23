@@ -26,8 +26,6 @@ class Stack{
             this.q2.push(this.q1.shift());
         }
 
-        console.log(this.q2);
-
         const value = this.q1.shift();
 
         
