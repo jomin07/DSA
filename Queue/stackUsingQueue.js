@@ -21,12 +21,17 @@ class Stack{
             return 'Underflow Error';
         }
 
-        while (this.q1.length !== 0) {
+        // Transfer elements from q1 to q2 except for the last element
+        while (this.q1.length > 1) {
             this.q2.push(this.q1.shift());
         }
 
-        const value = this.q2.pop();
+        console.log(this.q2);
 
+        const value = this.q1.shift();
+
+        
+        // Transfer elements back from q2 to q1
         while (this.q2.length !== 0) {
             this.q1.push(this.q2.shift());
         }
