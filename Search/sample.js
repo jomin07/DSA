@@ -4,11 +4,9 @@ function binarySearch(arr, target) {
 
   while (left <= right) {
     let mid = Math.floor((left + right) / 2);
-
     if (arr[mid] === target) {
       return mid;
     }
-
     if (target < arr[mid]) {
       right = mid - 1;
     } else {
@@ -18,5 +16,5 @@ function binarySearch(arr, target) {
   return -1;
 }
 
-const arr = [1, 3, 4, 5, 6];
-console.log(binarySearch(arr, 3));
+const arr = [1, 3, 5, 6, 7, 8];
+console.log(binarySearch(arr, 7));
