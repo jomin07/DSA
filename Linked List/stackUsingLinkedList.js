@@ -110,7 +110,7 @@ class LinkedListStack {
   }
 
   peek() {
-    return this.list.head.value;
+    return this.list.tail.value;
   }
 
   isEmpty() {
