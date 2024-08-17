@@ -1,21 +1,15 @@
-//"aaguaaahhaaaaagjkaa"
-
-function getCount(str) {
-  let count = 0;
-  let res = 0;
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] === "a") {
-      count++;
-      if (count === 2) {
-        res++;
-        count = 0;
-      }
-    } else {
-      count = 0;
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    let num = arr[i];
+    let j = i - 1;
+    while (j >= 0 && arr[j] > num) {
+      arr[j + 1] = arr[j];
+      j--;
     }
+    arr[j + 1] = num;
   }
-  return res;
+  return arr;
 }
 
-const str = "aaguaaahhaaaaagjkaa";
-console.log(getCount(str));
+const arr = [-2, 1, 6, -3, 2];
+console.log(insertionSort(arr));
