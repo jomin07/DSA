@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-class linkedList {
+class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -109,7 +109,7 @@ class linkedList {
   }
 }
 
-const list = new linkedList();
+const list = new LinkedList();
 console.log(list.isEmpty());
 console.log("Size: ", list.getSize());
 
