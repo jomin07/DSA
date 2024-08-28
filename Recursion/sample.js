@@ -11,11 +11,11 @@ function search(arr, target, left, right) {
     return mid;
   }
 
-  if (target < mid) {
+  if (target < arr[mid]) {
     return search(arr, target, left, mid - 1);
   } else {
     return search(arr, target, mid + 1, right);
   }
 }
 
-console.log(binarySearch([1, 2, 3, 4, 5], 55));
+console.log(binarySearch([1, 2, 3, 4, 5], 2));
