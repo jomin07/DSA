@@ -1,3 +1,4 @@
+//find sum of the elements of each arrays
 const al = [{ a: 3 }, { a: 3 }, { a: 3 }, { a: 3 }];
 const ab = [{ af: [23, 23] }, { af: [23, 23] }, { af: [23, 23] }];
 const ac = [
@@ -6,7 +7,6 @@ const ac = [
   { af: [{ a: [34, 23, 42] }] },
   { af: [{ a: [34, 23, 42] }] },
 ];
-//find sum of the elements of each arrays
 
 const sum3 = ac.reduce((acc, curr) => {
   return (
