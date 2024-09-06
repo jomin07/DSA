@@ -1,16 +1,11 @@
-//Find Pairs with Sum of 4 in an Array using a Hash Table
-
 function findPairsWithSum(arr, sum) {
-  const hashTable = {};
+  const seen = {};
   const pairs = [];
 
-  for (let i = 0; i < arr.length; i++) {
-    let diff = sum - arr[i];
-    if (hashTable[diff] !== undefined) {
-      pairs.push([diff, arr[i]]);
-    }
-
-    hashTable[arr[i]] = i;
+  for (let num of arr) {
+    const complement = sum - num;
+    if (seen[complement]) pairs.push([complement, num]);
+    seen[num] = true;
   }
   return pairs;
 }
