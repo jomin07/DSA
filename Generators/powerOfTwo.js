@@ -2,22 +2,15 @@
 
 function* powerOfTwo(num) {
   for (let i = 1; i <= num; i++) {
-    let flag = false;
     let n = i;
-    while (n >= 1) {
-      if (n === 1) break;
-      if (n % 2 !== 0) {
-        flag = true;
-        break;
-      }
+    while (n > 1 && n % 2 === 0) {
       n /= 2;
     }
-
-    if (!flag) yield i;
+    if (n === 1) yield i;
   }
 }
 
-const generator = powerOfTwo(1024);
+const generator = powerOfTwo(40);
 let next = generator.next();
 
 while (!next.done) {
