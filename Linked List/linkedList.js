@@ -230,6 +230,25 @@ class LinkedList {
       curr = curr.next;
     }
   }
+
+  insertAfterTarget(target, value) {
+    if (this.isEmpty()) {
+      console.log("Empty List");
+    } else {
+      let node = new Node(value);
+      let curr = this.head;
+      while (curr.value !== target) {
+        curr = curr.next;
+      }
+      if (curr.value === target) {
+        node.next = curr.next;
+        curr.next = node;
+        this.size++;
+      } else {
+        console.log("Not Found");
+      }
+    }
+  }
 }
 
 function arrayToLinkedList(arr) {
@@ -266,6 +285,11 @@ console.log("Insertion");
 list.insert(15, 2);
 list.print();
 list.insert(15, 1);
+list.print();
+console.log("Size: ", list.getSize());
+
+console.log("Insertion After target");
+list.insertAfterTarget(15, 33);
 list.print();
 console.log("Size: ", list.getSize());
 
