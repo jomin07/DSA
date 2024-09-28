@@ -55,16 +55,16 @@ class Graph {
 
   bfs(start) {
     const queue = [start];
-    const visited = new Set();
+    const visited = new Set([start]); // Mark the start node as visited
     const result = [];
 
     while (queue.length) {
       const vertex = queue.shift();
-      if (!visited.has(vertex)) {
-        visited.add(vertex);
-        result.push(vertex);
+      result.push(vertex);
 
-        for (let neighbor of this.adjacencyList[vertex]) {
+      for (let neighbor of this.adjacencyList[vertex]) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor);
           queue.push(neighbor);
         }
       }
@@ -74,17 +74,16 @@ class Graph {
 
   dfs(start) {
     const stack = [start];
-    const visited = new Set();
+    const visited = new Set([start]); // Mark the start node as visited
     const result = [];
 
     while (stack.length) {
       const vertex = stack.pop();
+      result.push(vertex);
 
-      if (!visited.has(vertex)) {
-        visited.add(vertex);
-        result.push(vertex);
-
-        for (const neighbor of this.adjacencyList[vertex]) {
+      for (const neighbor of this.adjacencyList[vertex]) {
+        if (!visited.has(neighbor)) {
+          visited.add(neighbor);
           stack.push(neighbor);
         }
       }
