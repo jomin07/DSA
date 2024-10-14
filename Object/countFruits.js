@@ -16,11 +16,7 @@ const data = {
 const countFruits = (obj, res = {}) => {
   for (let key in obj) {
     if (typeof obj[key] === "string") {
-      if (res[obj[key]]) {
-        res[obj[key]]++;
-      } else {
-        res[obj[key]] = 1;
-      }
+      res[obj[key]] = (res[obj[key]] || 0) + 1;
     } else if (typeof obj[key] === "object" && obj[key] !== null) {
       countFruits(obj[key], res);
     }
