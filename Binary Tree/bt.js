@@ -63,6 +63,29 @@ class BinaryTree {
 
     return this.countLeafNodes(root.left) + this.countLeafNodes(root.right);
   }
+
+  removeDuplicates() {
+    const valueSet = new Set();
+    this.root = this.removeDuplicatesHelper(this.root, valueSet);
+  }
+
+  removeDuplicatesHelper(root, valueSet) {
+    if (!root) return null;
+
+    // Recursively check left and right subtrees
+    root.left = this.removeDuplicatesHelper(root.left, valueSet);
+    root.right = this.removeDuplicatesHelper(root.right, valueSet);
+
+    // If value already exists, remove this node and return one of its children
+    if (valueSet.has(root.value)) {
+      // If the node is a duplicate, return either its left or right child (or null if both are null)
+      return root.left || root.right;
+    }
+
+    // Otherwise, add the value to the set and return the node
+    valueSet.add(root.value);
+    return root;
+  }
 }
 
 function areIdentical(root1, root2) {
@@ -85,7 +108,15 @@ bt.insert(3);
 bt.insert(4);
 bt.insert(5);
 bt.insert(6);
+bt.insert(5); // Duplicate
+bt.insert(2); // Duplicate
 
+console.log("Before removing duplicates (level-order traversal):");
+bt.levelOrder();
+
+bt.removeDuplicates();
+
+console.log("After removing duplicates (level-order traversal):");
 bt.levelOrder();
 
 console.log("Height of tree: ", bt.findHeight(bt.root));
