@@ -137,6 +137,30 @@ class BinarySearchTree {
     return root;
   }
 
+  removeDuplicates(root) {
+    const uniques = new Set();
+    const duplicates = [];
+    this.findDuplicates(root, uniques, duplicates);
+
+    for (let value of duplicates) {
+      this.delete(value);
+    }
+  }
+
+  findDuplicates(root, uniques, duplicates) {
+    if (root) {
+      this.findDuplicates(root.left, uniques, duplicates);
+
+      if (uniques.has(root.value)) {
+        duplicates.push(root.value);
+      } else {
+        uniques.add(root.value);
+      }
+
+      this.findDuplicates(root.right, uniques, duplicates);
+    }
+  }
+
   findClosestValue(target) {
     return this.closestValue(this.root, target, Infinity);
   }
@@ -182,6 +206,16 @@ console.log("BFS");
 bst.levelOrder();
 
 bst.delete(10);
+console.log("BFS");
+bst.levelOrder();
+
+bst.insert(3);
+bst.insert(5);
+console.log("BFS");
+bst.levelOrder();
+
+console.log("Removing duplicates");
+bst.removeDuplicates(bst.root);
 console.log("BFS");
 bst.levelOrder();
 
