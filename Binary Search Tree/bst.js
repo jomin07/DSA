@@ -161,6 +161,49 @@ class BinarySearchTree {
     }
   }
 
+  findKthSmallest(root, k) {
+    let count = 0;
+    let result = null;
+
+    function inOrderHelper(root) {
+      if (root) {
+        inOrderHelper(root.left);
+
+        count++;
+        if (count === k) {
+          result = root.value;
+          return result;
+        }
+
+        inOrderHelper(root.right);
+      }
+      return result;
+    }
+
+    return inOrderHelper(root);
+  }
+
+  findKthLargest(root, k) {
+    let result = null;
+    let count = 0;
+
+    function reverseInorder(root) {
+      if (root) {
+        reverseInorder(root.right);
+
+        count++;
+        if (count === k) {
+          result = root.value;
+          return result;
+        }
+
+        reverseInorder(root.left);
+      }
+      return result;
+    }
+    return reverseInorder(root);
+  }
+
   findClosestValue(target) {
     return this.closestValue(this.root, target, Infinity);
   }
@@ -190,6 +233,8 @@ bst.insert(10);
 bst.insert(5);
 bst.insert(15);
 bst.insert(3);
+bst.insert(2);
+
 console.log(bst.search(bst.root, 10));
 console.log(bst.search(bst.root, 15));
 console.log(bst.search(bst.root, 5));
@@ -226,3 +271,7 @@ const targetValue = 11;
 const closestValue = bst.findClosestValue(targetValue);
 
 console.log(`Closest value to ${targetValue} is:`, closestValue);
+
+console.log("3rd smallest", bst.findKthSmallest(bst.root, 3));
+
+console.log("3rd Largest", bst.findKthLargest(bst.root, 3));
