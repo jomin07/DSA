@@ -86,6 +86,41 @@ class BinaryTree {
     valueSet.add(root.value);
     return root;
   }
+
+  zigzagTraversal() {
+    if (!this.root) return;
+
+    const result = [];
+    let currentLevel = [];
+    currentLevel.push(this.root);
+
+    let leftToRight = true;
+
+    while (currentLevel.length > 0) {
+      const nextLevel = [];
+      const values = [];
+
+      while (currentLevel.length > 0) {
+        const node = currentLevel.pop();
+        values.push(node.value);
+
+        // Push child nodes into the next level stack
+        if (leftToRight) {
+          if (node.left) nextLevel.push(node.left);
+          if (node.right) nextLevel.push(node.right);
+        } else {
+          if (node.right) nextLevel.push(node.right);
+          if (node.left) nextLevel.push(node.left);
+        }
+      }
+
+      result.push(...values);
+      leftToRight = !leftToRight; // Flip direction
+      currentLevel = nextLevel;
+    }
+
+    return result;
+  }
 }
 
 function areIdentical(root1, root2) {
@@ -108,6 +143,13 @@ bt.insert(3);
 bt.insert(4);
 bt.insert(5);
 bt.insert(6);
+
+console.log("BFS :");
+bt.levelOrder();
+
+console.log(bt.zigzagTraversal());
+bt.levelOrder();
+
 bt.insert(5); // Duplicate
 bt.insert(2); // Duplicate
 
