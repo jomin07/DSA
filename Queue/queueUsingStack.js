@@ -13,6 +13,8 @@ class QueueUsingStack {
   }
 
   dequeue() {
+    if (this.isEmpty()) return "Underflow Error";
+
     if (this.stack2.length === 0) {
       while (this.stack1.length) {
         this.stack2.push(this.stack1.pop());
@@ -23,16 +25,11 @@ class QueueUsingStack {
   }
 
   peek() {
-    if (this.isEmpty()) {
-      return null;
+    if (this.isEmpty()) return "Empty Queue";
+    if (this.stack2.length > 0) {
+      return this.stack2[this.stack2.length - 1];
     }
-
-    if (this.stack2.length === 0) {
-      while (this.stack1.length) {
-        this.stack2.push(this.stack1.pop());
-      }
-    }
-    return this.stack2[this.stack2.length - 1];
+    return this.stack1[0];
   }
 
   print() {
