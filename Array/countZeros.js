@@ -12,10 +12,10 @@ const nestedArray = [
 const countZeros = (obj) => {
   let count = 0;
   for (let key in obj) {
-    if (typeof obj[key] === "number" && obj[key] === 0) {
+    if (obj[key] === 0) {
       count++;
     } else if (Array.isArray(obj[key])) {
-      count += countZeros(obj[key], count);
+      count += countZeros(obj[key]);
     }
   }
   return count;
