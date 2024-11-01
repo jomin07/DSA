@@ -15,11 +15,11 @@ const data = {
 };
 
 function countUniqueValues(obj, set = new Set()) {
-  for (let key in obj) {
-    if (typeof obj[key] === "object" && obj[key] !== null) {
-      countUniqueValues(obj[key], set);
-    } else {
+  for (const key in obj) {
+    if (typeof obj[key] === "number") {
       set.add(obj[key]);
+    } else if (typeof obj[key] === "object") {
+      countUniqueValues(obj[key], set);
     }
   }
 
