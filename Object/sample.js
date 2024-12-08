@@ -1,27 +1,44 @@
-//Given a nested object that contains arrays of numbers, write a function to sum all the numbers within the arrays.
+const inp = [
+  { name: "firstname", value: "johndoe" },
+  { name: "age", value: "28" },
+  { name: "language", value: "English" },
+  { name: "language", value: "Tamil" },
+  { name: "language", value: "Hindi" },
+];
 
-const data = {
-  a: [1, 2, 3],
-  b: {
-    c: [4, 5],
-    d: {
-      e: [6],
-      f: [7, 8, 9],
-    },
-  },
-};
+// Output = {
+//   firstname: "johndoe",
+//   age: "28",
+//   language: ["English", "Tamil", "Hindi"],
+// };
 
-function sumNestedArrays(obj) {
-  let sum = 0;
-  for (let key in obj) {
-    if (Array.isArray(obj[key])) {
-      let nestedSum = obj[key].reduce((acc, curr) => acc + curr, 0);
-      sum += nestedSum;
-    } else if (typeof obj[key] === "object" && obj[key] !== null) {
-      sum += sumNestedArrays(obj[key]);
-    }
+const output = inp.reduce((acc, { name, value }) => {
+  if (acc[name]) {
+    // If the key already exists, ensure it's an array and add the value
+    acc[name] = Array.isArray(acc[name])
+      ? [...acc[name], value]
+      : [acc[name], value];
+  } else {
+    // If the key doesn't exist, initialize it with the value
+    acc[name] = value;
   }
-  return sum;
-}
+  return acc;
+}, {});
 
-console.log(sumNestedArrays(data));
+console.log(output);
+
+const res = inp.reduce((acc, curr) => {
+  if (curr.name === "language") {
+    if (acc[curr.name]) {
+      acc[curr.name].push(curr.value);
+    } else {
+      acc[curr.name] = [curr.value];
+    }
+  } else {
+    acc[curr.name] = curr.value;
+  }
+
+  return acc;
+}, {});
+
+console.log(res);
