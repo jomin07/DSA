@@ -13,3 +13,5 @@ function bubbleSort(arr) {
 }
 const arr = [-6, 2, 6, -3, 1];
 console.log(bubbleSort(arr));
+
+//T.C - O (n^2)

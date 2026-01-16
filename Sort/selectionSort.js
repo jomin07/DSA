@@ -15,3 +15,4 @@ function selectionSort(arr) {
 
 const arr = [-1, 6, 2, 4, -3];
 console.log(selectionSort(arr));
+// Time Complexity: O(n2)

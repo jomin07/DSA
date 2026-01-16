@@ -18,3 +18,4 @@ function search(arr, target, left, right) {
 
 //Array must be sorted
 console.log(recursiveBinarySearch([2, 3, 5, 6], 2));
+//T.C - O(logn)
